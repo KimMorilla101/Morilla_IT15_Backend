@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::query()->updateOrCreate([
+            'email' => 'admin@morilla.test',
+        ], [
+            'name' => 'School Admin',
+            'password' => 'password123',
         ]);
 
         $categories = [
@@ -40,7 +40,11 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($categories as $categoryData) {
-            $category = Category::create($categoryData);
+            $category = Category::query()->updateOrCreate([
+                'slug' => $categoryData['slug'],
+            ], [
+                'name' => $categoryData['name'],
+            ]);
 
             $posts = match ($category->slug) {
                 'announcements' => [
@@ -76,12 +80,19 @@ class DatabaseSeeder extends Seeder
             };
 
             foreach ($posts as $post) {
-                Post::create([
+                Post::query()->updateOrCreate([
                     'category_id' => $category->id,
                     'title' => $post['title'],
+                ], [
                     'description' => $post['description'],
                 ]);
             }
         }
+
+        $this->call([
+            CourseSeeder::class,
+            StudentSeeder::class,
+            SchoolDaySeeder::class,
+        ]);
     }
 }
