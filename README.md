@@ -41,26 +41,37 @@ Copy-Item .env.example .env
 
 ### 4. Configure `.env`
 
-Set your local database values:
+Use this project configuration in `.env`:
 
 ```env
-APP_NAME=Enrollment_Backend
+APP_NAME=Laravel
 APP_ENV=local
 APP_DEBUG=true
-APP_URL=http://127.0.0.1:8000
+APP_URL=https://localhost/morilla_backend
+FORCE_HTTPS=true
+
+FRONTEND_URLS=http://localhost:3000,http://127.0.0.1:3000,https://localhost:3000,https://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173,https://localhost:5173,https://127.0.0.1:5173,http://localhost:5176,http://127.0.0.1:5176,https://localhost:5176,https://127.0.0.1:5176
+FRONTEND_API_KEY=
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=your_database_name
-DB_USERNAME=your_db_username
-DB_PASSWORD=your_db_password
+DB_DATABASE=morilla_backend
+DB_USERNAME=root
+DB_PASSWORD=
+
+SESSION_DRIVER=database
+SESSION_LIFETIME=120
+SESSION_DOMAIN=null
+SANCTUM_STATEFUL_DOMAINS=localhost,127.0.0.1,localhost:3000,127.0.0.1:3000,localhost:5173,127.0.0.1:5173,localhost:5176,127.0.0.1:5176
 ```
 
-Optional HTTPS enforcement:
+Do not copy `APP_KEY` manually in docs. Generate it with Step 5.
+
+Optional frontend API key check:
 
 ```env
-FORCE_HTTPS=true
+FRONTEND_API_KEY=your_secure_api_key
 ```
 
 ### 5. Generate app key
