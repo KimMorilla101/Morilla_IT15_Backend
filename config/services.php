@@ -39,4 +39,9 @@ return [
         'api_key' => env('FRONTEND_API_KEY'),
     ],
 
+    'weather' => [
+        'key'       => env('WEATHER_API_KEY'),
+        'cache_ttl' => env('WEATHER_CACHE_TTL_MINUTES', 10),
+    ],
+
 ];

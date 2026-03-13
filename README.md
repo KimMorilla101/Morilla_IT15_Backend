@@ -146,6 +146,44 @@ Accept: application/json
 - `/api/students`
 - `/api/courses`
 - `/api/school-days`
+- `/api/weather`
+
+## Weather API Integration
+
+This backend integrates [WeatherAPI.com](https://www.weatherapi.com) to provide real-time weather data.
+
+### Get a free API key
+
+1. Go to https://www.weatherapi.com and sign up for a free account.
+2. Copy your API key from the dashboard.
+3. Set it in your `.env`:
+
+```env
+WEATHER_API_KEY=your_key_here
+WEATHER_CACHE_TTL_MINUTES=10
+```
+
+### Endpoint
+
+GET `/api/weather` _(requires authentication)_
+
+Query parameters:
+
+- `city` — city name (e.g. `Davao`)
+- `lat` + `lon` — coordinates (e.g. `7.1907`, `125.4553`)
+- `days` — forecast days, 1–5 (default: 5)
+
+Example requests:
+
+```
+GET /api/weather?city=Davao
+GET /api/weather?lat=7.1907&lon=125.4553
+GET /api/weather?city=Manila&days=3
+```
+
+Returns: current temperature, humidity, wind speed, condition icon, and 5-day forecast.
+
+Rate limit protection: responses are cached for `WEATHER_CACHE_TTL_MINUTES` minutes. If the upstream API fails, stale cached data is returned with a warning.
 
 ## Useful Commands
 

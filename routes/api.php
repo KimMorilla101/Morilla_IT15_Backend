@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\SchoolDayController;
 use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\WeatherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/ping', fn () => response()->json(['status' => 'ok', 'message' => 'API is running.']));
@@ -23,5 +24,6 @@ Route::middleware(['ensure.https', 'frontend.api'])->group(function (): void {
         Route::apiResource('students', StudentController::class);
         Route::apiResource('courses', CourseController::class);
         Route::apiResource('school-days', SchoolDayController::class);
+        Route::get('/weather', [WeatherController::class, 'index']);
     });
 });
