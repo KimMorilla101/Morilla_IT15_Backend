@@ -18,10 +18,8 @@ Laravel backend API for student enrollment, courses, school-day records, and das
 ### 1. Go to backend folder
 
 ```bash
-cd laravel-backend
+cd Morilla_IT15_Backend
 ```
-
-If your local folder is named differently, use that folder name instead.
 
 ### 2. Install dependencies
 
