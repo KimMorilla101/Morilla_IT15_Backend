@@ -29,7 +29,7 @@ class StudentRequest extends SanitizedFormRequest
                 'max:255',
                 Rule::unique('students', 'email')->ignore($studentId),
             ],
-            'gender' => [...$required, Rule::in(['male', 'female', 'non-binary', 'prefer_not_to_say'])],
+            'gender' => [...$required, Rule::in(['male', 'female'])],
             'date_of_birth' => [...$required, 'date', 'before:today'],
             'department' => [...$required, 'string', 'max:100'],
             'year_level' => [...$required, 'integer', 'between:1,6'],

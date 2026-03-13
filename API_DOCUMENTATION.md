@@ -167,7 +167,7 @@ Fields:
 - first_name: required on POST, string max 100
 - last_name: required on POST, string max 100
 - email: required on POST, unique, valid email, max 255
-- gender: required on POST, one of male, female, non-binary, prefer_not_to_say
+- gender: required on POST, one of male, female
 - date_of_birth: required on POST, date, before today
 - department: required on POST, string max 100
 - year_level: required on POST, integer 1-6

@@ -28,7 +28,7 @@ class StudentFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
-            'gender' => fake()->randomElement(['male', 'female', 'non-binary', 'prefer_not_to_say']),
+            'gender' => fake()->randomElement(['male', 'female']),
             'date_of_birth' => fake()->dateTimeBetween('-24 years', '-16 years'),
             'department' => fake()->randomElement($departments),
             'year_level' => fake()->numberBetween(1, 4),

@@ -50,4 +50,31 @@ class StudentApiTest extends TestCase
             'department' => 'Computer Science',
         ]);
     }
+
+    public function test_student_creation_rejects_invalid_gender_value(): void
+    {
+        $user = User::factory()->create();
+        $course = Course::factory()->create();
+        $token = $user->createToken('test-suite')->plainTextToken;
+
+        $response = $this->withHeader('Authorization', 'Bearer '.$token)
+            ->postJson('/api/students', [
+                'student_number' => 'STU900002',
+                'first_name' => 'Juan',
+                'last_name' => 'Dela Cruz',
+                'email' => 'juan.delacruz@example.com',
+                'gender' => 'non-binary',
+                'date_of_birth' => '2005-04-10',
+                'department' => 'Computer Science',
+                'year_level' => 3,
+                'phone_number' => '09171234568',
+                'address' => 'Quezon City',
+                'status' => 'active',
+                'course_ids' => [$course->id],
+            ]);
+
+        $response
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['gender']);
+    }
 }

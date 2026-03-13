@@ -30,6 +30,7 @@ class DatabaseSeederTest extends TestCase
                     ->orWhereNull('status');
             })
             ->count());
+        $this->assertSame(0, Student::query()->whereNotIn('gender', ['male', 'female'])->count());
 
         $this->assertGreaterThanOrEqual(20, Course::query()->count());
         $this->assertGreaterThanOrEqual(4, Course::query()->distinct('department')->count('department'));
