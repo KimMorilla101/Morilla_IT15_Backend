@@ -1,11 +1,5 @@
 # Enrollment System Backend API
 
-Laravel backend API for student enrollment, courses, school-day records, and dashboard analytics.
-
-## Documentation
-
-- API reference: [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
-
 ## Tech Stack
 
 - PHP 8+
